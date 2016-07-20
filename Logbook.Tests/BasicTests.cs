@@ -1,4 +1,12 @@
-﻿using Icarus.Core;
+﻿/*
+Logbook is a simple logging library for errors/debug/info.
+
+Copyright (c) 2016, Matthew Kelly (Badgerati)
+Company: Cadaeic Studios
+License: MIT (see LICENSE for details)
+ */
+
+using Icarus.Core;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -69,6 +77,28 @@ namespace Logbook.Tests
                 Assert.IsNotNull(logMessage.UtcDateTime);
                 Assert.IsNotNullOrEmpty(logMessage.StackTrace);
                 Assert.AreEqual(exLevel, logMessage.LogLevel);
+            }
+        }
+
+        #endregion
+
+        #region OnLog Event
+
+        [Test]
+        public void Log_Exception_OnLogEvent_Success()
+        {
+            try
+            {
+                var value = int.Parse("fail");
+            }
+            catch (Exception ex)
+            {
+                var logMessage = Logbook.Instance.Log(ex, LogLevel.Error);
+
+                Assert.IsNotNull(logMessage);
+                Assert.AreEqual(ex.Message, logMessage.Message);
+                Assert.IsNotNull(logMessage.UtcDateTime);
+                Assert.IsNotNullOrEmpty(logMessage.StackTrace);
             }
         }
 

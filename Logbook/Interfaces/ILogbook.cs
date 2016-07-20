@@ -6,12 +6,19 @@ Company: Cadaeic Studios
 License: MIT (see LICENSE for details)
  */
 
+using Logbook.Events;
 using System;
 
 namespace Logbook.Interfaces
 {
     public interface ILogbook
     {
+
+        /// <summary>
+        /// Event is triggered when a log entry is created.
+        /// </summary>
+        event OnLogEventHandler OnLog;
+
 
         /// <summary>
         /// Gets the tag.

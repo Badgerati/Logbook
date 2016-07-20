@@ -7,6 +7,7 @@ License: MIT (see LICENSE for details)
  */
 
 using Icarus.Core;
+using Logbook.Events;
 using Logbook.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,15 @@ namespace Logbook
         {
             get { return _lazy.Value; }
         }
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Event is triggered when a log entry is created.
+        /// </summary>
+        public event OnLogEventHandler OnLog;
 
         #endregion
 
@@ -242,7 +252,14 @@ namespace Logbook
                 return default(ILogMessage);
             }
 
-            return _collection.Insert(LogMessageHelper.Create(exception, logLevel, message));
+            var logMessage = _collection.Insert(LogMessageHelper.Create(exception, logLevel, message));
+
+            if (OnLog != default(OnLogEventHandler))
+            {
+                OnLog.Invoke(logMessage);
+            }
+
+            return logMessage;
         }
 
         /// <summary>
@@ -261,7 +278,14 @@ namespace Logbook
                 return default(ILogMessage);
             }
 
-            return _collection.Insert(LogMessageHelper.Create(message, logLevel, source));
+            var logMessage = _collection.Insert(LogMessageHelper.Create(message, logLevel, source));
+
+            if (OnLog != default(OnLogEventHandler))
+            {
+                OnLog.Invoke(logMessage);
+            }
+
+            return logMessage;
         }
 
         #endregion

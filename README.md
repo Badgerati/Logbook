@@ -84,6 +84,7 @@ This will now log an entry for a NumberFormatException, including:
 * Exception type
 * Full stacktrace
 * Exception source
+* Logging level
 * Any inner Exception details if they're available (including that exception's inner exceptions, etc.)
 
 ### Log Message
@@ -97,6 +98,22 @@ if (thisValue != someValue)
 ```
 
 This will log an entry with the specified message/source (empty if not supplied), and the entry will also contain the stacktrace and date.
+
+## OnLog Events
+If you have an external logging system, or would like to do some additional logic (like emails) when a exception get's logged, then you can use the OnLog event. This event is triggered whenever your calls to `Log(...)` actually log a message, not every time you call `Log(...)` as you may have level filtering on. An example is as follows:
+
+```C#
+public void Main()
+{
+    Logbook.Instance.Initialise("C:\Logs");
+    Logbook.Instance.OnLog += OnLog_Event;
+}
+
+protected void OnLog_Event(ILogMessage message)
+{
+    // Your logic here
+}
+```
 
 # Bugs and Feature Requests
 For any bugs you may find or features you wish to request, please create an [issue](https://github.com/Badgerati/Logbook/issues "Issues") in GitHub.

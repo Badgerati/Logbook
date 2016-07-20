@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\EventDelegates.cs" />
     <Compile Include="Interfaces\ILogbook.cs" />
     <Compile Include="Interfaces\ILogMessage.cs" />
     <Compile Include="Logbook.cs" />
