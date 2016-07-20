@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Logbook</id>
+    <version>$version$</version>
+    <authors>Badgerati</authors>
+    <owners>Badgerati</owners>
+    <licenseUrl>https://github.com/Badgerati/Logbook/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/Badgerati/Logbook</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/Badgerati/Logbook/master/Images/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Logbook is a simple error logging tool, that stores all log messages in JSON format files.</description>
+    <releaseNotes>https://github.com/Badgerati/Logbook/releases</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>logbook json log errors exceptions event handling simple debug</tags>
+    <dependencies>
+      <dependency id="Icarus.Core" version="1.4.1.9" />
+    </dependencies>
+  </metadata>
+</package>
